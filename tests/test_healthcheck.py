@@ -1,7 +1,8 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../myapi')))
+import unittest
 from falcon import testing
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../myapi')))
 from app import app
 
 class HealthCheckTest(testing.TestCase):
