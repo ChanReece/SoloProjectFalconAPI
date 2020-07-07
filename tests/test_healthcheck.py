@@ -1,5 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../myapi')))
 from falcon import testing
-from myapi.app import app
+from app import app
 
 class HealthCheckTest(testing.TestCase):
     """
@@ -16,3 +19,6 @@ class HealthCheckTest(testing.TestCase):
         """Basic test to verify health check works"""
         response = self.simulate_get("/v1/healthchecks/ping")
         self.assertEqual(200, response.status_code)
+
+if __name__ == '__main__':
+    unittest.main()

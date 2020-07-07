@@ -10,7 +10,8 @@ The editor will initialize with a PetStore example which is also used in the spe
 
 ## Usage
 
-Do these things from your project root. The same location as this file.
+### Using a Terminal
+Do these things in a terminal from your project root. The same location as this file. Make sure your virtual environment is active.
 
 Install Requirements
 ```bash
@@ -28,12 +29,18 @@ coverage run --source=myapi -m unittest
 coverage report -m
 ```
 
-To serve your app with the app server gunicorn
+To serve your app with a WSGI development server
 ```bash
-gunicorn app:app --reload --chdir myapi/
+python myapi/app.py
 ```
 
-With the gunicorn serving your app you can do a client integration test
+With your app running behind a server run the integration test
 ```bash
 python integration_tests/test_healthcheck.py
+```
+
+Optional: Instead of a Dev server use Gunicorn, a production-ready server which supports threading and other advanced features.
+```bash
+pip install gunicorn
+gunicorn app:app --reload --chdir myapi/
 ```
