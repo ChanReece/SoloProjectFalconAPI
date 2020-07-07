@@ -44,3 +44,47 @@ Optional: Instead of a Dev server use Gunicorn, a production-ready server which 
 pip install gunicorn
 gunicorn app:app --reload --chdir myapi/
 ```
+
+### Using VSCode
+
+#### Setup
+Setup venv
+```
+python3 -m venv ./.venv
+. ./.venv/bin/activate
+pip install --upgrade pip
+```
+
+Using venv
+```
+. ./.venv/bin/activate
+```
+
+Install Python Extension
+```
+⇧⌘X -> Search Python -> Install
+``` 
+
+Select Python Interpreter (Already configured)
+```
+⇧⌘P -> Python: Select Interpreter -> Select the venv interpreter (e.g. ./.venv/bin/python)
+```
+
+Setup Test (Already configured)
+```
+⇧⌘P -> Python: Configure Tests -> unittest -> <follow prompt>
+
+```
+
+#### Using
+Debug app
+```
+Select `Python: App` -> F5
+```
+Place `breakpoints` as necessary, make web requests to exercise code path
+
+Run/Debug test
+```
+Open test file (`tests/test_<filename>`) -> Run/Debug
+```
+Place `breakpoints` as necessary, works in both `tests` and `myapi` source file
