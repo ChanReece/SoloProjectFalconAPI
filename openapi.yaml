@@ -20,7 +20,7 @@ tags:
 
 # API Endpoints
 paths:
-  /ping:
+  /healthchecks/ping:
     get:
       tags:
       - "healthchecks"
