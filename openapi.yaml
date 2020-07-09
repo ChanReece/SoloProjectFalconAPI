@@ -1,0 +1,45 @@
+# Metadata about your API
+swagger: "2.0"
+info:
+  title: ""
+  description: ""
+  version: "1.0.0"
+  contact:
+    email: "YOU@godaddy.com"
+
+# Describe how to call your API
+host: "localhost:8000"
+basePath: "/v1"
+schemes:
+- "http"
+
+# Tags organize your API endpoints
+tags:
+- name: "healthchecks"
+  description: "Make sure the application is functioning"
+
+# API Endpoints
+paths:
+  /healthchecks/ping:
+    get:
+      tags:
+      - "healthchecks"
+      summary: "Simple healthcheck"
+      description: "Ensures the application is reachable"
+      operationId: "healthPing"
+      produces:
+      - "application/json"
+      # parameters: # no parameters for this endpoint
+      responses:
+        "200":
+          description: "Server is healthy"
+          schema:
+            $ref: "#/definitions/HealthResponse"
+
+# Models for your api
+definitions:
+  HealthResponse:
+    type: object
+    properties:
+      status:
+        type: string
