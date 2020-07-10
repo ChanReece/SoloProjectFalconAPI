@@ -1,45 +1,84 @@
-# Metadata about your API
-swagger: "2.0"
+swagger: '2.0'
 info:
-  title: ""
-  description: ""
-  version: "1.0.0"
+  title: ''
+  description: ''
+  version: 1.0.0
   contact:
-    email: "YOU@godaddy.com"
-
-# Describe how to call your API
-host: "localhost:8000"
-basePath: "/v1"
+    email: YOU@godaddy.com
+host: 'localhost:8000'
+basePath: /v1
 schemes:
-- "http"
-
-# Tags organize your API endpoints
+  - http
 tags:
-- name: "healthchecks"
-  description: "Make sure the application is functioning"
-
-# API Endpoints
+  - name: healthchecks
+    description: Make sure the application is functioning
+  - name: search
+    description: find stuff
 paths:
+  # here is my healthcheck
   /healthchecks/ping:
     get:
       tags:
-      - "healthchecks"
-      summary: "Simple healthcheck"
-      description: "Ensures the application is reachable"
-      operationId: "healthPing"
+        - healthchecks
+      summary: Simple healthcheck
+      description: Ensures the application is reachable
+      operationId: healthPing
       produces:
-      - "application/json"
-      # parameters: # no parameters for this endpoint
+        - application/json
       responses:
-        "200":
-          description: "Server is healthy"
+        '200':
+          description: Server is healthy
           schema:
-            $ref: "#/definitions/HealthResponse"
+            $ref: '#/definitions/HealthResponse'
 
-# Models for your api
+
+  /domainsearch/{domain}:
+    get:
+      parameters:
+        - name: "domain"
+          in: "path"
+          description: "ID of pet to return"
+          required: true
+          type: "integer"
+      tags:
+        - search
+      summary: Looking up domains
+      description: searches for the availability and price of a domain
+      operationId: domainSearch
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Here are your results
+          schema:
+            $ref: '#/definitions/DomainSearchResponse'
+
+
 definitions:
   HealthResponse:
     type: object
     properties:
       status:
         type: string
+  DomainSearchResponse:
+    type: object
+    properties:
+      isAvailable:
+        type: boolean
+      price:
+        type: number
+      salePrice:
+        type: number
+      # multiple alternatives
+      alternatives:
+        type: array
+        items:
+          # arrays are a pain in swagger
+          type: object
+          properties:
+            price:
+              type: number
+            salePrice:
+              type: number
+            name:
+              type: string
