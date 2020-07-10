@@ -4,7 +4,7 @@ info:
   description: ''
   version: 1.0.0
   contact:
-    email: YOU@godaddy.com
+    email: cburseyreece@godaddy.com
 host: 'localhost:8000'
 basePath: /v1
 schemes:
@@ -12,10 +12,7 @@ schemes:
 tags:
   - name: healthchecks
     description: Make sure the application is functioning
-  - name: search
-    description: find stuff
 paths:
-  # here is my healthcheck
   /healthchecks/ping:
     get:
       tags:
@@ -30,8 +27,7 @@ paths:
           description: Server is healthy
           schema:
             $ref: '#/definitions/HealthResponse'
-
-
+            
   /domainsearch/{domain}:
     get:
       parameters:
@@ -42,18 +38,18 @@ paths:
           type: "integer"
       tags:
         - search
-      summary: Looking up domains
-      description: searches for the availability and price of a domain
+      summary: looking up domains
+      description: searches for availabiltiy and price of a domain
       operationId: domainSearch
       produces:
-        - application/json
+      - application/json
       responses:
         '200':
           description: Here are your results
           schema:
             $ref: '#/definitions/DomainSearchResponse'
-
-
+          
+            
 definitions:
   HealthResponse:
     type: object
@@ -64,16 +60,14 @@ definitions:
     type: object
     properties:
       isAvailable:
-        type: boolean
+        type: string
       price:
-        type: number
+        type: string
       salePrice:
-        type: number
-      # multiple alternatives
+        type: string
       alternatives:
         type: array
         items:
-          # arrays are a pain in swagger
           type: object
           properties:
             price:
