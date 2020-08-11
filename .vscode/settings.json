@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": ".venv/bin/python",
+    "python.pythonPath": "/Users/cburseyreece/BOOTCAMP PROJECTS/API BUILDING/projects/falcon-skeleton/.venv/bin/python3",
     "python.autoComplete.extraPaths": [
         "./myapi"
     ],
